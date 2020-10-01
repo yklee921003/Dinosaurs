@@ -28,49 +28,53 @@ let pteranodon  = new Dino("Pteranodon",44,20,"carnivor","North America","Late C
 
 let pigeon = new Dino("Pigeon",0.5,9,"herbavor","World Wide","Holocene","All birds are living dinosaurs.");
 
-const dino
+
 let dinoObject = [triceratops,tyrannosaurus, anklyosaurus, stegosaurus, elasmosaurus, pteranodon, pigeon];
-
-
+//dinoObject에 i를 붙어야 할;
 
 
   //create human objects
-  let human = {};
+ function Human(humanName, humanHeight, humanWeight, humanDiet){
+   this.humanName = humanName;
+   this.humanHeight = humanHeight;
+   this.humanWeight = humanWeight;
+   this.humanDiet = humanDiet;
+   this.image = "images/human.png";
+ }
 
   const humanData = function(){
-      human.name = document.getElementById("name").value;
-      human.height = (document.getElementById("feet").value * 12)+ document.getElementById("inches").value;
-      human.weight = document.getElementById("weight").value;
-      human.diet = document.getElementById("diet").value;
+      const humanName = document.getElementById("name").value;
+      const humanHeight = (document.getElementById("feet").value * 12)+ document.getElementById("inches").value;
+      const humanWeight = document.getElementById("weight").value;
+      const humanDiet = document.getElementById("diet").value;
+      const humanObject = new Human(humanName, humanHeight, humanWeight, humanDiet);
+      return humanObject;
   };
-
-    // Use IIFE to get human data from form
-
-
 
     // Create Dino Compare Method 1
     // NOTE: Weight in JSON file is in lbs, height in inches.
- const compareDiet = function(){
+ Dino.prototype.compareDiet = function(humanDiet){
    if (human.diet === dinoObject.diet ){
      return "you have same diet as the" + dinoObject.diet;
    }else{
      return "you have a " + human.diet + "and the " + dinoObject.species + "is a" + dinoObject.diet
    };
+ };
    // Create Dino Compare Method 2
    // NOTE: Weight in JSON file is in lbs, height in inches.
-const compareWeight = function(){
+Dino.prototype.compareWeight = function(humanWeight){
   if (human.weight === dinoObject.weight){
     return `You are same weight as the ${dinoObject.species}`;
   }else if (human.weight < dinoObject.weight){
     return `${dinoObject.sepcies} weigh ${dinoObject.weight - human.weight} lbs more than ${dinoObject.human}`;
-  };else{
+  }else{
     return `You weigh ${human.weight - dinoObject.weight} lbs more than ${dinoObject.species}`;
   };
 };
 // Create Dino Compare Method 3
 // NOTE: Weight in JSON file is in lbs, height in inches.
 
-const compareHeight = function(){
+Dino.prototype.compareHeight = function(humanHeight){
   if (human.height === dinoObject.height){
     return `You have same height as the ${dinoObject.species}`;
   }else if (human.height < dinoObject.height){
@@ -81,29 +85,27 @@ const compareHeight = function(){
 };
 
       // Generate Tiles for each Dino in Array
-        // Add tiles to DOM
+    // Add tiles to DOM
+
+    //display grid
+
+
+    //when button is clicked, display infographic
 
     // Remove form from screen
+
     function hideForm (){
-      const removeForm = document.getElementById("dino-compare").style.display = 'none';
-    }
-    //when button is clicked, display infographic
-    const button = document.getElementById('btn');
-    button.addEventListener('click',function(e){
-      hideForm(); //remove form
-
-    });
-
-    document.getElementById('btn').addEventListener('click',()=>{
-      hide();
-    });
-
-
-    function hide(){
-      document.getElementById('dino-compare').style.display = 'none';
+      document.getElementById("dino-compare").style.display = 'none';
     };
 
+    const button = document.getElementById('btn');
+
+    button.addEventListener('click',function(e){
+      hideForm(); //remove form
+      console.log(humanData());
+      // randomSelectImg();
+      console.log(dinoObject);
+    });
 
 
 
-// On button click, prepare and display infographic
