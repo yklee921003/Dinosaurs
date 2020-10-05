@@ -32,7 +32,7 @@ let pigeon = new Dino("Pigeon",0.5,9,"herbavor","World Wide","Holocene","All bir
 let dinoObject = [triceratops,tyrannosaurus, anklyosaurus, stegosaurus, elasmosaurus, pteranodon, pigeon];
 //dinoObject에 i를 붙어야 할;
 
-
+ 
   //create human objects
  function Human(humanName, humanHeight, humanWeight, humanDiet){
    this.humanName = humanName;
