@@ -15,21 +15,21 @@ function Dino(species, weight, height, diet, where, when, fact) {
 
 // Create Dino Objects
 
-let triceratops = new Dino("Triceratops", 13000, 114, "herbavor", "North America", "Late Cretaceous", "First discovered in 1889 by Othniel Charles Marsh");
+let triceratops = new Dino("Triceratops", "13000", "114", "Herbavor", "North America", "Late Cretaceous", "First discovered in 1889 by Othniel Charles Marsh");
 
-let tyrannosaurusrex = new Dino("Tyrannosaurus Rex", 11905, 144, "carnivor", "North America", "Late Cretaceous", "The largest known skull measures in at 5 feet long.");
+let tyrannosaurusrex = new Dino("Tyrannosaurus Rex", "11905", "144", "Carnivor", "North America", "Late Cretaceous", "The largest known skull measures in at 5 feet long.");
 
-let anklyosaurus = new Dino("Anklyosaurus", 10500, 55, "herbavor", "North America", "Late Cretaceous", "Anklyosaurus survived for approximately 135 million years.");
+let anklyosaurus = new Dino("Anklyosaurus", "10500", "55", "Herbavor", "North America", "Late Cretaceous", "Anklyosaurus survived for approximately 135 million years.");
 
-let brachiosaurus = new Dino("Brachiosaurus", 70000, "372", "herbavor", "North America", "Late Jurasic", "An asteroid was named 9954 Brachiosaurus in 1991.");
+let brachiosaurus = new Dino("Brachiosaurus", "70000", "372", "Herbavor", "North America", "Late Jurasic", "An asteroid was named 9954 Brachiosaurus in 1991.");
 
-let stegosaurus = new Dino("Stegosaurus", 11600, 79, "herbavor", "North America, Europe, Asia", "Late Jurasic to Early Cretaceous", "The Stegosaurus had between 17 and 22 seperate places and flat spines.");
+let stegosaurus = new Dino("Stegosaurus", "11600", "79", "Herbavor", "North America, Europe, Asia", "Late Jurasic to Early Cretaceous", "The Stegosaurus had between 17 and 22 seperate places and flat spines.");
 
-let elasmosaurus = new Dino("Elasmosaurus", 16000, 59, "carnivor", "North America", "Late Cretaceous", "Elasmosaurus was a marine reptile first discovered in Kansas.");
+let elasmosaurus = new Dino("Elasmosaurus", "16000", "59", "Carnivor", "North America", "Late Cretaceous", "Elasmosaurus was a marine reptile first discovered in Kansas.");
 
-let pteranodon = new Dino("Pteranodon", 44, 20, "carnivor", "North America", "Late Cretaceous", "Actually a flying reptile, the Pteranodon is not a dinosaur.");
+let pteranodon = new Dino("Pteranodon", "44", "20", "Carnivor", "North America", "Late Cretaceous", "Actually a flying reptile, the Pteranodon is not a dinosaur.");
 
-let pigeon = new Dino("Pigeon", 0.5, 9, "herbavor", "World Wide", "Holocene", "All birds are living dinosaurs.");
+let pigeon = new Dino("Pigeon", "0.5", "9", "Herbavor", "World Wide", "Holocene", "All birds are living dinosaurs.");
 
 
 let dinoObject = [triceratops, tyrannosaurusrex, anklyosaurus, brachiosaurus, stegosaurus, elasmosaurus, pteranodon, pigeon];
@@ -37,30 +37,38 @@ let dinoObject = [triceratops, tyrannosaurusrex, anklyosaurus, brachiosaurus, st
 
 
 //create human Constructor
-function Human(species, humanHeight, humanWeight, humanDiet) {
-  this.species = species;
-  this.humanHeight = humanHeight;
-  this.humanWeight = humanWeight;
-  this.humanDiet = humanDiet;
-  this.fact = '';
-  this.image = "images/human.png";
-}
+// function Human(species, humanHeight, humanWeight, humanDiet) {
+//   this.species = species;
+//   this.humanHeight = humanHeight;
+//   this.humanWeight = humanWeight;
+//   this.humanDiet = humanDiet;
+//   this.fact = '';
+//   this.image = "images/human.png";
+// }
+// const humanHeight
+// const humanWeight
+// const humanDiet
+// const humanObject = new Human(species, humanHeight, humanWeight, humanDiet);
+// return humanObject;
+
+const humanObject = {};
 
 const humanData = function() {
-  const species = document.getElementById("name").value;
-  const humanHeight = (document.getElementById("feet").value * 12) + document.getElementById("inches").value;
-  const humanWeight = document.getElementById("weight").value;
-  const humanDiet = document.getElementById("diet").value;
-  const humanObject = new Human(species, humanHeight, humanWeight, humanDiet);
-  return humanObject;
+  humanObject.species = document.getElementById("name").value;
+  humanObject.height = (document.getElementById("feet").value * 12) + document.getElementById("inches").value;
+  humanObject.Weight = document.getElementById("weight").value;
+  humanObject.diet = document.getElementById("diet").value;
+  humanObject.image = "images/human.png"
+
 };
 
 
 //set human in the middle of array
-const human = humanData();
-
-dinoObject.splice(4, 0, human);
-
+// const human = humanData();
+    // Dino.prototype.getRandom = function(){
+    //   return this.fact [Math.floor(Math.random() * this.fact.length)];
+    // };
+    dinoObject.splice(4, 0, humanObject);
 const addTiles = function() {
   for (let i = 0; i < 10; i++) {
 
@@ -79,9 +87,10 @@ const addTiles = function() {
     tileContainer.appendChild(img);
 
     title.innerHTML = dinoObject[i].species; //display species name
+    fact.innerHTML = compareHeight();
     img.setAttribute('src', dinoObject[i].image); // display images
 
-  };
+};
 };
 //
 // // Create Dino Compare Method 1
@@ -119,65 +128,61 @@ const addTiles = function() {
 
 //get random facts
 // source : https://stackoverflow.com/questions/48856443/transfer-random-string-to-innerhtml
+// dinoObject안에있는 것들을 돌아가면서 위에 compare function과 비교하는것인데
 
-let randomFact = Math.floor(Math.random() * 8);
-let randomDinoFact = dinoObject[randomFact];
 
 function compareDiet(humanDiet) {
   let randomFact = Math.floor(Math.random() * 8);
   let randomDinoFact = dinoObject[randomFact];
-  if (humanDiet === randomDinoFact.diet) {
-    return "you have same diet as the " + randomDinoFact.diet;
-    console.log(`You and ${randomDinoFact.species} have same diet`);
+  if (humanObject.diet === dinoObject.diet) {
+    return "you have same diet as the " + randomDinoFact.species;
   } else {
-    return "you have a " + humanDiet + " and the " + randomDinoFact.species + "is a " + randomDinoFact.diet;
-    console.log(`You and ${randomDinoFact.species} have different diet.`);
+    return "you have a " + humanObject.diet + " and the " + randomDinoFact.species + "is a " + randomDinoFact.diet;
   };
 };
 
 function compareHeight(humanHeight) {
   let randomFact = Math.floor(Math.random() * 8);
   let randomDinoFact = dinoObject[randomFact];
-  if (human.height === randomDinoFact.height) {
+  if (humanObject.height === randomDinoFact.height) {
     return `You have same height as the ${randomDinoFact.species}`;
-    console.log(`You have same height as the ${randomDinoFact.species}`);
-  } else if (human.height < randomDinoFact.height) {
-    return `${randomDinoFact.species} is ${randomDinoFact.height - human.height} inches taller than you.`;
-    console.log(`${randomDinoFact.species} is ${randomDinoFact.height - human.height} inches taller than you.`);
+  } else if (humanObject.height < randomDinoFact.height) {
+    return `${randomDinoFact.species} is ${randomDinoFact.height - humanObject.height} inches taller than you.`;
   } else {
-    console.log(`You are ${human.height = randomDinoFact.height} inches taller than ${randomDinoFact.species}.`);
-    return `You are ${human.height = randomDinoFact.height} inches taller than ${randomDinoFact.species}.`;
+    console.log(`You are ${humanObject.height - randomDinoFact.height} inches taller than ${randomDinoFact.species}.`);
   };
 };
 
 function compareWeight(humanWeight) {
-  let randomFact = Math.floor(Math.random() * 8);
-  let randomDinoFact = dinoObject[randomFact];
-  if (human.weight === randomDinoFact.weight) {
-    return `You are same weight as the ${randomDinoFact.species}`;
-    console.log(`You are same weight as the ${randomDinoFact.species}`);
-  } else if (human.weight < randomDinoFact.weight) {
-    return `${randomDinoFact.sepcies} weighs ${randomDinoFact.weight - human.weight} lbs more than ${human.species}`;
-    console.log(`${randomDinoFact.sepcies} weighs ${randomDinoFact.weight - human.weight} lbs more than ${human.species}`);
+  if (humanObject.weight < randomDinoFact.weight) {
+    return `${randomDinoFact.species} weights ${randomDinoFact.weight - humanObject.weight} lbs more than ${humanObject.species}`;
+  } else if (humanObject.weight > randomDinoFact.weight) {
+    return `You weigh ${humanObject.weight - randomDinoFact.weight} lbs more than ${randomDinoFact.species}`;
   } else {
-    return `You weigh ${human.weight - randomDinoFact.weight} lbs more than ${randomDinoFact.species}`;
-    console.log(`You weigh ${human.weight - randomDinoFact.weight} lbs more than ${randomDinoFact.species}`);
+    return `You are same weight as the ${randomDinoFact.species}`;
   };
 };
+// if (dinoObject.fact === 'string'){
+//   fact.innerHTML = "";
+// }else{
+//   // dinoObject[i].fact.push(compareDiet(),compareHeight(),compareWeight());
+//   dinoObject[8].fact.splice(1,3);
+//   tileFact.innerHTML = dinoObject[i].getRandom();
+// };
+
 
 // Remove form from screen
-
 function hideForm() {
   document.getElementById("dino-compare").style.display = 'none';
 };
+
 //when button clicks, display infographic.
 button.addEventListener('click', function(e) {
   hideForm(); //remove form
-  humanData();
+
   console.log(humanData());
   console.log(dinoObject);
   addTiles();
-  console.log(compareDiet());
-  console.log(compareHeight());
-  console.log(compareWeight());
+
+
 });
