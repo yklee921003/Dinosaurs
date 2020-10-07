@@ -162,13 +162,7 @@ function compareWeight(humanWeight) {
     return `You are same weight as the ${randomDinoFact.species}`;
   };
 };
-// if (dinoObject.fact === 'string'){
-//   fact.innerHTML = "";
-// }else{
-//   // dinoObject[i].fact.push(compareDiet(),compareHeight(),compareWeight());
-//   dinoObject[8].fact.splice(1,3);
-//   tileFact.innerHTML = dinoObject[i].getRandom();
-// };
+
 
 
 // Remove form from screen
