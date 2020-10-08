@@ -64,13 +64,13 @@ const humanData = function() {
 
 
 //set human in the middle of array
-// const human = humanData();
-    // Dino.prototype.getRandom = function(){
-    //   return this.fact [Math.floor(Math.random() * this.fact.length)];
-    // };
-    dinoObject.splice(4, 0, humanObject);
+
+ dinoObject.splice(4, 0, humanObject);
+
 const addTiles = function() {
-  for (let i = 0; i < 10; i++) {
+  dinoObject.forEach(dino => {
+//then use dino in place of all occurance of dinoObject[i]
+
 
     //Generate tile elements
     const tileContainer = document.createElement("div");
@@ -86,84 +86,106 @@ const addTiles = function() {
     tileContainer.appendChild(fact);
     tileContainer.appendChild(img);
 
-    title.innerHTML = dinoObject[i].species; //display species name
-    fact.innerHTML = compareHeight();
-    img.setAttribute('src', dinoObject[i].image); // display images
+    title.innerHTML = dino[i].species; //display species name
+    // fact.innerHTML = compareHeight();
+    img.setAttribute('src', dino[i].image); // display images
 
-};
+});
 };
 //
-// // Create Dino Compare Method 1
-// // NOTE: Weight in JSON file is in lbs, height in inches.
+// Create Dino Compare Method 1
+// NOTE: Weight in JSON file is in lbs, height in inches.
 // Dino.prototype.compareDiet = function(humanDiet) {
-//   const human = humanData();
-//
-//
-//   if (human.diet === this.diet) {
+//   if (humanObject.diet === this.diet) {
 //     return "you have same diet as the " + this.diet;
 //   } else {
-//     return "you have a " + human.diet + "and the " + this.species + "is a" + this.diet
+//     return "you have a " + humanObject.diet + "and the " + this.species + "is a" + this.diet
 //   };
 // };
 // // Create Dino Compare Method 2
 // // NOTE: Weight in JSON file is in lbs, height in inches.
 // Dino.prototype.compareWeight = function(humanWeight) {
-//   if (human.weight === this.weight) {
+//   if (humanObject.weight === this.weight) {
 //     return `You are same weight as the ${this.species}`;
-//   } else if (human.weight < this.weight) {
-//     return `${this.sepcies} weigh ${dthis.weight - human.weight} lbs more than ${this.human}`;
+//   } else if (humanObject.weight < this.weight) {
+//     return `${this.sepcies} weigh ${this.weight - humanObject.weight} lbs more than ${this.human}`;
 //   } else {
-//     return `You weigh ${human.weight - this.weight} lbs more than ${this.species}`;
+//     return `You weigh ${humanObject.weight - this.weight} lbs more than ${this.species}`;
 //   };
 // };
 // // Create Dino Compare Method 3
 // // NOTE: Weight in JSON file is in lbs, height in inches.
 //
 // Dino.prototype.compareHeight = function(humanHeight) {
-//
-//
+//   if (humanObject.height === this.height) {
+//      return `You have same height as the ${this.species}`;
+//    } else if (humanObject.height < this.height) {
+//      return `${this.species} is ${this.height - humanObject.height} inches taller than you.`;
+//    } else {
+//      console.log(`You are ${humanObject.height - this.height} inches taller than ${this.species}.`);
+//    };
+//  };
+
 // const compareDiet = Dino.prototype.compareDiet();
 // const compareWeight = Dino.prototype.compareWeight();
 // const compareHeight = Dino.prototype.compareHeight();
 
+let result = "";
+const randomDi = Math.floor(Math.random() * 7);
+switch (randomDi) {
+  case 1:
+    result = dino.compareDiet();
+    break;
+  case 2:
+    result = dino.compareWeight();
+    break;
+  case 3:
+    result = dino.compareHeight();
+    break;
+  case 4:
+    result = `The ${dino.species} was found in the year of ${dino.when}`;
+    break;
+  case 5:
+    result = `The ${dino.species} is from ${dino.where}`;
+    break;
+  default:
+    break;
+};
+
 //get random facts
 // source : https://stackoverflow.com/questions/48856443/transfer-random-string-to-innerhtml
-// dinoObject안에있는 것들을 돌아가면서 위에 compare function과 비교하는것인데
-
 
 function compareDiet(humanDiet) {
-  let randomFact = Math.floor(Math.random() * 8);
-  let randomDinoFact = dinoObject[randomFact];
-  if (humanObject.diet === dinoObject.diet) {
-    return "you have same diet as the " + randomDinoFact.species;
+  // let randomFact = Math.floor(Math.random() * 8);
+  // let randomDinoFact = dinoObject[randomFact];
+  if (humanObject.diet === dino.diet) {
+    return "you have same diet as the " + dino.species;
   } else {
-    return "you have a " + humanObject.diet + " and the " + randomDinoFact.species + "is a " + randomDinoFact.diet;
+    return "you have a " + humanObject.diet + " and the " + dino.species + "is a " + randomDinoFact.diet;
   };
 };
 
 function compareHeight(humanHeight) {
-  let randomFact = Math.floor(Math.random() * 8);
-  let randomDinoFact = dinoObject[randomFact];
-  if (humanObject.height === randomDinoFact.height) {
-    return `You have same height as the ${randomDinoFact.species}`;
-  } else if (humanObject.height < randomDinoFact.height) {
-    return `${randomDinoFact.species} is ${randomDinoFact.height - humanObject.height} inches taller than you.`;
+  // let randomFact = Math.floor(Math.random() * 8);
+  // let randomDinoFact = dinoObject[randomFact];
+  if (humanObject.height === dino.height) {
+    return `You have same height as the ${dino.species}`;
+  } else if (humanObject.height < dino.height) {
+    return `${dino.species} is ${dino.height - humanObject.height} inches taller than you.`;
   } else {
-    console.log(`You are ${humanObject.height - randomDinoFact.height} inches taller than ${randomDinoFact.species}.`);
+    console.log(`You are ${humanObject.height - dino.height} inches taller than ${dino.species}.`);
   };
 };
 
 function compareWeight(humanWeight) {
-  if (humanObject.weight < randomDinoFact.weight) {
-    return `${randomDinoFact.species} weights ${randomDinoFact.weight - humanObject.weight} lbs more than ${humanObject.species}`;
+  if (humanObject.weight < dino.weight) {
+    return `${dino.species} weights ${dino.weight - humanObject.weight} lbs more than ${humanObject.species}`;
   } else if (humanObject.weight > randomDinoFact.weight) {
-    return `You weigh ${humanObject.weight - randomDinoFact.weight} lbs more than ${randomDinoFact.species}`;
+    return `You weigh ${humanObject.weight - dino.weight} lbs more than ${dino.species}`;
   } else {
-    return `You are same weight as the ${randomDinoFact.species}`;
+    return `You are same weight as the ${dino.species}`;
   };
 };
-
-
 
 // Remove form from screen
 function hideForm() {
@@ -173,10 +195,7 @@ function hideForm() {
 //when button clicks, display infographic.
 button.addEventListener('click', function(e) {
   hideForm(); //remove form
-
   console.log(humanData());
   console.log(dinoObject);
   addTiles();
-
-
 });
