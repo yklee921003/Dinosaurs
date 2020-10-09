@@ -64,7 +64,7 @@ const addTiles = function(){
     tileContainer.appendChild(fact);
     tileContainer.appendChild(img);
     title.innerHTML = dinoObject.species;
-    fact.innerHTML = randomObject;
+    fact.innerHTML = result;
     img.setAttribute('src', dinoObject.image);
 
     let result = "";
