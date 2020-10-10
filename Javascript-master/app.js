@@ -34,9 +34,6 @@ let pigeon = new Dino("Pigeon", "0.5", "9", "Herbavor", "World Wide", "Holocene"
 
 let dinoObject = [triceratops, tyrannosaurusrex, anklyosaurus, brachiosaurus, stegosaurus, elasmosaurus, pteranodon, pigeon];
 
-// Create Dino Compare Method 1
-// NOTE: Weight in JSON file is in lbs, height in inches.
-
 // human object
 const humanObject = {};
 const humanData = function(){
