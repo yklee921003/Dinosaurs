@@ -15,24 +15,27 @@ function Dino(species, weight, height, diet, where, when, fact){
 };
 // Create Dino Objects
 
-let triceratops = new Dino("Triceratops", "13000", "114", "Herbavor", "North America", "Late Cretaceous", "First discovered in 1889 by Othniel Charles Marsh");
+const triceratops = new Dino("Triceratops", "13000", "114", "Herbavor", "North America", "Late Cretaceous", "First discovered in 1889 by Othniel Charles Marsh");
 
-let tyrannosaurusrex = new Dino("Tyrannosaurus Rex", "11905", "144", "Carnivor", "North America", "Late Cretaceous", "The largest known skull measures in at 5 feet long.");
+const tyrannosaurusrex = new Dino("Tyrannosaurus Rex", "11905", "144", "Carnivor", "North America", "Late Cretaceous", "The largest known skull measures in at 5 feet long.");
 
-let anklyosaurus = new Dino("Anklyosaurus", "10500", "55", "Herbavor", "North America", "Late Cretaceous", "Anklyosaurus survived for approximately 135 million years.");
+const anklyosaurus = new Dino("Anklyosaurus", "10500", "55", "Herbavor", "North America", "Late Cretaceous", "Anklyosaurus survived for approximately 135 million years.");
 
-let brachiosaurus = new Dino("Brachiosaurus", "70000", "372", "Herbavor", "North America", "Late Jurasic", "An asteroid was named 9954 Brachiosaurus in 1991.");
+const brachiosaurus = new Dino("Brachiosaurus", "70000", "372", "Herbavor", "North America", "Late Jurasic", "An asteroid was named 9954 Brachiosaurus in 1991.");
 
-let stegosaurus = new Dino("Stegosaurus", "11600", "79", "Herbavor", "North America, Europe, Asia", "Late Jurasic to Early Cretaceous", "The Stegosaurus had between 17 and 22 seperate places and flat spines.");
+const stegosaurus = new Dino("Stegosaurus", "11600", "79", "Herbavor", "North America, Europe, Asia", "Late Jurasic to Early Cretaceous", "The Stegosaurus had between 17 and 22 seperate places and flat spines.");
 
-let elasmosaurus = new Dino("Elasmosaurus", "16000", "59", "Carnivor", "North America", "Late Cretaceous", "Elasmosaurus was a marine reptile first discovered in Kansas.");
+const elasmosaurus = new Dino("Elasmosaurus", "16000", "59", "Carnivor", "North America", "Late Cretaceous", "Elasmosaurus was a marine reptile first discovered in Kansas.");
 
-let pteranodon = new Dino("Pteranodon", "44", "20", "Carnivor", "North America", "Late Cretaceous", "Actually a flying reptile, the Pteranodon is not a dinosaur.");
+const pteranodon = new Dino("Pteranodon", "44", "20", "Carnivor", "North America", "Late Cretaceous", "Actually a flying reptile, the Pteranodon is not a dinosaur.");
 
-let pigeon = new Dino("Pigeon", "0.5", "9", "Herbavor", "World Wide", "Holocene", "All birds are living dinosaurs.");
+const pigeon = new Dino("Pigeon", "0.5", "9", "Herbavor", "World Wide", "Holocene", "All birds are living dinosaurs.");
 
 
-let dinoObject = [triceratops, tyrannosaurusrex, anklyosaurus, brachiosaurus, stegosaurus, elasmosaurus, pteranodon, pigeon];
+const dinoObject = [triceratops, tyrannosaurusrex, anklyosaurus, brachiosaurus, stegosaurus, elasmosaurus, pteranodon, pigeon];
+
+// Create Dino Compare Method 1
+// NOTE: Weight in JSON file is in lbs, height in inches.
 
 // human object
 const humanObject = {};
@@ -44,8 +47,6 @@ const humanData = function(){
   humanObject.diet = document.getElementById("diet").value;
   // humanObject.image = "images/human.png"
 };
-// add tile
-
 
   dinoObject.splice(4 , 0, humanObject);
   function addTiles(){
@@ -73,6 +74,7 @@ const humanData = function(){
     }else{
       title.innerHTML = dino.species;
       img.src = `images/${dino.species}.png`;
+      
     let result = "";
     //Generate random number to choose fact from switch
     const randomObject = Math.floor(Math.random() * 7);
@@ -123,7 +125,7 @@ Dino.prototype.compareWeight = function(humanWeight) {
   if (humanObject.weight === this.weight) {
     return `You are same weight as the ${this.species}`;
   } else if (humanObject.weight < this.weight) {
-    return `${this.sepcies} weigh ${this.weight - humanObject.weight} lbs more than ${this.human}`;
+    return `${this.species} weigh ${this.weight - humanObject.weight} lbs more than ${this.human}`;
   } else {
     return `You weigh ${humanObject.weight - this.weight} lbs more than ${this.species}`;
   };
