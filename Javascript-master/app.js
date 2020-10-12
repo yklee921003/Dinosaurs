@@ -31,8 +31,6 @@ const pigeon = new Dino("Pigeon", "0.5", "9", "Herbavor", "World Wide", "Holocen
 
 const dinoObject = [triceratops, tyrannosaurusrex, anklyosaurus, brachiosaurus, stegosaurus, elasmosaurus, pteranodon, pigeon];
 
-// Create Dino Compare Method 1
-// NOTE: Weight in JSON file is in lbs, height in inches.
 
 // human object
 const humanObject = {};
@@ -45,6 +43,23 @@ const humanData = function() {
   // humanObject.image = "images/human.png"
 };
 
+// Validate form
+ function validate(){
+   let emptyName =document.getElementById("name").value;
+   let emptyFeet = document.getElementById("feet").value;
+   let emptyInches = document.getElementById("inches").value;
+   let emptyWeight = document.getElementById("weight").value;
+
+  if( emptyName == "" || emptyFeet == "" || emptyInches == "" || emptyWeight == ""){
+      alert("Please fill out all fields!");
+      return false;
+  };
+  return true;
+};
+
+
+
+// put human in the middle
 dinoObject.splice(4, 0, humanObject);
 
 function addTiles() {
@@ -139,7 +154,9 @@ Dino.prototype.compareHeight = function(humanHeight) {
     return (`You are ${humanObject.height - this.height} inches taller than ${this.species}.`);
   };
 };
+
 // remove form from the screen
+
 function hideForm() {
   document.getElementById("dino-compare").style.display = 'none'
 };
@@ -147,6 +164,12 @@ function hideForm() {
 // When button clicks, display infographic.
 const button = document.getElementById('btn');
 button.addEventListener('click', function(e) {
-  hideForm();
-  addTiles();
+  if (validate() == true){
+    return hideForm(),addTiles();
+
+  }else{
+    return false;
+  }
+  // hideForm();
+  // addTiles();
 });
